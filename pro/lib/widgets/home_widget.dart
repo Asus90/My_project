@@ -1,6 +1,8 @@
 // ... Previous code ...
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pro/items_bloc/bloc/items_bloc_bloc.dart';
 
 import 'package:pro/main.dart';
 import 'package:pro/widgets/glass_effect.dart';
@@ -13,6 +15,9 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<ItemsBlocBloc>(context).add(ItemsBlocEvent.loadItems());
+    });
     return Column(
       children: [
         Expanded(
@@ -45,21 +50,30 @@ class HomeWidget extends StatelessWidget {
             ),
             color: Color.fromARGB(255, 0, 124, 196),
           ),
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return const Row(
-                children: [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  FrostedGlassBox(
-                    theWidth: 200.0,
-                    theHeight: 200.0,
-                    theChild: Text('Hello world'),
-                  ),
-                ],
+          child: BlocBuilder<ItemsBlocBloc, ItemsBlocState>(
+            builder: (context, state) {
+              if (state.modelItem.isEmpty) {
+                print("datas empty");
+              }
+              final data = state.modelItem;
+              return ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      FrostedGlassBox(
+                        idx: index,
+                        data: data[index],
+                        theWidth: 200.0,
+                        theHeight: 200.0,
+                      ),
+                    ],
+                  );
+                },
               );
             },
           ),
