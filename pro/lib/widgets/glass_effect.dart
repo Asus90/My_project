@@ -16,7 +16,7 @@ class FrostedGlassBox extends StatelessWidget {
 
   final theWidth;
   final Model data;
-  final int idx;
+  final idx;
   final theHeight;
 
   @override
