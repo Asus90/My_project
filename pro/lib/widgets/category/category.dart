@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pro/items_bloc/bloc/items_bloc_bloc.dart';
+import 'package:pro/widgets/Chart/chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class categoryScreen extends StatelessWidget {
@@ -17,8 +18,17 @@ class categoryScreen extends StatelessWidget {
         if (state.modelItem.isEmpty) {
           return Text("Loading...");
         }
+
         final datas = state.modelItem[idx];
+        if (state.modelItem[idx].criteria![0].variable!.isNotEmpty) {
+          final DatasOfVariables = state.modelItem[idx].criteria![0].variable;
+          print(DatasOfVariables.toString());
+        } else {
+          print("not available");
+        }
+
         final all = state.modelItem[idx].criteria!.length;
+
         return Container(
           child: Stack(
             children: [
@@ -39,58 +49,71 @@ class categoryScreen extends StatelessWidget {
                 ),
               ),
               Center(
-                  child: ListView.builder(
-                itemCount: all,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: 400,
-                    height: 100,
-                    color: Colors.transparent,
-                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    child: Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            border: Border.all(
-                              color: Color.fromARGB(255, 255, 255, 255),
+                child: ListView.builder(
+                  itemCount: all,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: 400,
+                      height: 100,
+                      color: Colors.transparent,
+                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color.fromARGB(255, 255, 255, 255)
+                                      .withOpacity(0.15),
+                                  Color.fromARGB(255, 255, 253, 253)
+                                      .withOpacity(0.05),
+                                ],
+                              ),
                             ),
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color.fromARGB(255, 255, 255, 255)
-                                    .withOpacity(0.15),
-                                Color.fromARGB(255, 255, 253, 253)
-                                    .withOpacity(0.05),
-                              ],
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Center(
-                              child: Text(
-                                datas.criteria![index].text!,
-                                style: GoogleFonts.lato(
-                                  shadows: [
-                                    Shadow(offset: Offset.fromDirection(1.0))
-                                  ],
-                                  textStyle:
-                                      Theme.of(context).textTheme.displayLarge,
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontStyle: FontStyle.italic,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text(
+                                  datas.criteria![index].text!,
+                                  style: GoogleFonts.lato(
+                                    shadows: [
+                                      Shadow(offset: Offset.fromDirection(1.0))
+                                    ],
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge,
+                                    fontSize: 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontStyle: FontStyle.italic,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              )),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 300,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ValueChart(),
+                ),
+              ),
             ],
           ),
         );

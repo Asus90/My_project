@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'model.dart';
+part of 'model12.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Model _$ModelFromJson(Map<String, dynamic> json) => Model(
+Model12 _$Model12FromJson(Map<String, dynamic> json) => Model12(
       id: json['id'] as int?,
       name: json['name'] as String?,
       tag: json['tag'] as String?,
@@ -16,7 +16,7 @@ Model _$ModelFromJson(Map<String, dynamic> json) => Model(
           .toList(),
     );
 
-Map<String, dynamic> _$ModelToJson(Model instance) => <String, dynamic>{
+Map<String, dynamic> _$Model12ToJson(Model12 instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'tag': instance.tag,

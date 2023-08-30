@@ -166,7 +166,7 @@ abstract class loadItems implements ItemsBlocEvent {
 
 /// @nodoc
 mixin _$ItemsBlocState {
-  List<Model> get modelItem => throw _privateConstructorUsedError;
+  List<Model12> get modelItem => throw _privateConstructorUsedError;
   dynamic get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -180,7 +180,7 @@ abstract class $ItemsBlocStateCopyWith<$Res> {
           ItemsBlocState value, $Res Function(ItemsBlocState) then) =
       _$ItemsBlocStateCopyWithImpl<$Res, ItemsBlocState>;
   @useResult
-  $Res call({List<Model> modelItem, dynamic isLoading});
+  $Res call({List<Model12> modelItem, dynamic isLoading});
 }
 
 /// @nodoc
@@ -203,7 +203,7 @@ class _$ItemsBlocStateCopyWithImpl<$Res, $Val extends ItemsBlocState>
       modelItem: null == modelItem
           ? _value.modelItem
           : modelItem // ignore: cast_nullable_to_non_nullable
-              as List<Model>,
+              as List<Model12>,
       isLoading: freezed == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -220,7 +220,7 @@ abstract class _$$_InitialCopyWith<$Res>
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Model> modelItem, dynamic isLoading});
+  $Res call({List<Model12> modelItem, dynamic isLoading});
 }
 
 /// @nodoc
@@ -240,7 +240,7 @@ class __$$_InitialCopyWithImpl<$Res>
       modelItem: null == modelItem
           ? _value._modelItem
           : modelItem // ignore: cast_nullable_to_non_nullable
-              as List<Model>,
+              as List<Model12>,
       isLoading: freezed == isLoading ? _value.isLoading! : isLoading,
     ));
   }
@@ -249,12 +249,12 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial({required final List<Model> modelItem, this.isLoading})
+  const _$_Initial({required final List<Model12> modelItem, this.isLoading})
       : _modelItem = modelItem;
 
-  final List<Model> _modelItem;
+  final List<Model12> _modelItem;
   @override
-  List<Model> get modelItem {
+  List<Model12> get modelItem {
     if (_modelItem is EqualUnmodifiableListView) return _modelItem;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_modelItem);
@@ -293,11 +293,11 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements ItemsBlocState {
   const factory _Initial(
-      {required final List<Model> modelItem,
+      {required final List<Model12> modelItem,
       final dynamic isLoading}) = _$_Initial;
 
   @override
-  List<Model> get modelItem;
+  List<Model12> get modelItem;
   @override
   dynamic get isLoading;
   @override

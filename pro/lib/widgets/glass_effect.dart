@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:pro/model/model/model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pro/model/model12/model12.dart';
 import 'package:pro/widgets/category/category.dart';
 
 class FrostedGlassBox extends StatelessWidget {
@@ -15,7 +16,7 @@ class FrostedGlassBox extends StatelessWidget {
       : super(key: key);
 
   final theWidth;
-  final Model data;
+  final Model12 data;
   final idx;
   final theHeight;
 

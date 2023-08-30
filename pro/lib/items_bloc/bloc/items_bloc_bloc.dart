@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pro/Failure/failure.dart';
 import 'package:pro/model/model/model.dart';
+import 'package:pro/model/model12/model12.dart';
 import 'package:pro/service/service.dart';
 
 part 'items_bloc_event.dart';
@@ -17,7 +18,7 @@ class ItemsBlocBloc extends Bloc<ItemsBlocEvent, ItemsBlocState> {
 
       final FinalResult = _result.fold((MinFailure l) {
         return const ItemsBlocState(modelItem: []);
-      }, (List<Model> result) {
+      }, (List<Model12> result) {
         return ItemsBlocState(modelItem: result);
       });
       emit(FinalResult);
