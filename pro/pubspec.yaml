@@ -62,7 +62,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - lib/asset/depositphotos_465790556-stock-photo-shallow-depth-field-selective-focus.webp
-    - 
+    - lib/asset/desktop-wallpaper-stock-market-trading-chart-1475006-for-your-mobile-tablet-explore-market-market-spice-market-stock-market-crash.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
