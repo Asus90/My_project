@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,16 +19,10 @@ class categoryScreen extends StatelessWidget {
         if (state.modelItem.isEmpty) {
           return Text("Loading...");
         }
-
         final datas = state.modelItem[idx];
-        if (state.modelItem[idx].criteria![0].variable!.isNotEmpty) {
-          final DatasOfVariables = state.modelItem[idx].criteria![0].variable;
-          print(DatasOfVariables.toString());
-        } else {
-          print("not available");
-        }
 
         final all = state.modelItem[idx].criteria!.length;
+        print(all);
 
         return Container(
           child: Stack(
@@ -37,9 +32,8 @@ class categoryScreen extends StatelessWidget {
                 height: double.infinity,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(
-                      'https://st2.depositphotos.com/12796694/46579/i/450/depositphotos_465790556-stock-photo-shallow-depth-field-selective-focus.jpg',
-                    ),
+                    image: AssetImage(
+                        'lib/asset/depositphotos_465790556-stock-photo-shallow-depth-field-selective-focus.webp'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -111,7 +105,11 @@ class categoryScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: ValueChart(),
+                  child: BlocBuilder<ItemsBlocBloc, ItemsBlocState>(
+                    builder: (context, state) {
+                      return ValueChart();
+                    },
+                  ),
                 ),
               ),
             ],

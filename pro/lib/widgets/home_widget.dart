@@ -21,24 +21,40 @@ class HomeWidget extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: Container(
-            child: SfCartesianChart(
-              primaryXAxis: CategoryAxis(),
-              series: <LineSeries<SalesData, String>>[
-                LineSeries<SalesData, String>(
-                  dataSource: <SalesData>[
-                    SalesData('Jan', 0),
-                    SalesData('Feb', 28),
-                    SalesData('Mar', 34),
-                    SalesData('Apr', 32),
-                    SalesData('May', 40),
+          child: BlocBuilder<ItemsBlocBloc, ItemsBlocState>(
+            builder: (context, state) {
+              if (state.isLoading == true) {
+                return const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      strokeWidth: 3,
+                      color: Color.fromARGB(255, 20, 143, 224),
+                      backgroundColor: Color.fromARGB(255, 255, 2, 2),
+                    ),
                   ],
-                  xValueMapper: (SalesData sales, _) => sales.year,
-                  yValueMapper: (SalesData sales, _) => sales.sales,
+                );
+              }
+              return Container(
+                child: SfCartesianChart(
+                  primaryXAxis: CategoryAxis(),
+                  series: <LineSeries<SalesData, String>>[
+                    LineSeries<SalesData, String>(
+                      dataSource: <SalesData>[
+                        SalesData('Jan', 0),
+                        SalesData('Feb', 28),
+                        SalesData('Mar', 34),
+                        SalesData('Apr', 32),
+                        SalesData('May', 40),
+                      ],
+                      xValueMapper: (SalesData sales, _) => sales.year,
+                      yValueMapper: (SalesData sales, _) => sales.sales,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            color: Colors.white.withOpacity(1.0),
+                color: Colors.white.withOpacity(1.0),
+              );
+            },
           ),
         ),
         Container(
@@ -56,6 +72,7 @@ class HomeWidget extends StatelessWidget {
                 print("datas empty");
               }
               final data = state.modelItem;
+
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: data.length,
